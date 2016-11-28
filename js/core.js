@@ -1,12 +1,14 @@
 var storage=window.localStorage,
 	fReader = new FileReader(),
 	uploadBtn=document.getElementById('upload'),
+	downloadBtn=document.getElementById('download'),
 	imageShow=document.getElementById('showUpload'),
 	row=document.getElementById('row'),
 	col=document.getElementById('col'),
 	board=document.getElementById('board');
 
 uploadBtn.addEventListener('change',uploadImg);	
+downloadBtn.addEventListener('click',download);
 
 fReader.onload=function(){
 	storage.setItem('img',fReader.result);
@@ -15,6 +17,15 @@ fReader.onload=function(){
 
 function uploadImg(e){
 	fReader.readAsDataURL(this.files[0]);
+}
+
+function download(e){
+	html2canvas(board,{
+		background:'#f0f0f0'
+	}).then(function(canvas) {
+		data = canvas.toDataURL('image/jpeg');
+		window.location.href=data;
+	});	
 }
 
 function createGrid(rows,cols,whiteBorder,imgWidth,imgHeight) {
@@ -36,6 +47,7 @@ function createGrid(rows,cols,whiteBorder,imgWidth,imgHeight) {
 			tmpRow.append(tmpCol);
 		}
 		board.append(tmpRow);
+		board.style.width=imgWidth+cols*whiteBorder+'px';
 	}
 }
 
