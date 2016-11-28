@@ -32,7 +32,7 @@ function createGrid(rows,cols,whiteBorder,imgWidth,imgHeight) {
 			tmpCol.style.height=imgHeight/rows+'px';
 			tmpCol.style.backgroundImage='url('+imgSrc+')';
 			tmpCol.style.backgroundRepeat='no-repeat';
-			tmpCol.style.backgroundPosition=j*(imgWidth/cols)+'px '+i*(imgHeight/rows)+'px';
+			tmpCol.style.backgroundPosition=-j*(imgWidth/cols)+'px '+(-i*(imgHeight/rows))+'px';
 			tmpRow.append(tmpCol);
 		}
 		board.append(tmpRow);
